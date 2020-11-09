@@ -2,6 +2,7 @@ var Todo = require('./models/todo');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
+        console.log("processssss",process.env)
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
@@ -51,8 +52,8 @@ module.exports = function (app) {
     });
 
     // application -------------------------------------------------------------
-    // app.get('*', function (req, res) {
-    //     res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-    // });
-    app.get('*', res.sendFile("hello"))
+    app.get('*', function (req, res) {
+        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    });
+    // app.get('*', res.sendFile("hello"))
 };
